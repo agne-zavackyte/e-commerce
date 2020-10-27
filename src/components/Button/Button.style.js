@@ -11,7 +11,8 @@ export const Button = styled.button`
       : props.theme.secondary.color};
   border: none;
   outline: none;
-  padding: 10px 20px;
+  height: ${(props) => props.theme.standart.height};
+  padding: 0 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
