@@ -5,3 +5,10 @@ export const FlexBlock = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+
+export const ErrorBlock = styled.div`
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 1em;
+  background: #cc6161;
+`;

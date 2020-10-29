@@ -4,25 +4,21 @@ import { useHistory } from "react-router-dom";
 import { LocationContext } from "../../contexts/location.context";
 import * as S from "./Home.style";
 
-function checkPostCode(postCode) {
-  return postCode.trim().length >= 6 && postCode.trim().length <= 9;
-}
-
 function Home() {
   const location = useContext(LocationContext);
-  const [postCode, setPostCode] = useState();
+  const [city, setCity] = useState();
   const [error, setError] = useState(false);
   const history = useHistory();
 
   return (
     <Section>
-      <h1>Select Your Store</h1>
+      <h1>Select Your City</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (checkPostCode(postCode)) {
+          if (city) {
             setError(false);
-            location.setState(postCode);
+            location.setState(city);
             history.push("/about");
           } else {
             setError(true);
@@ -30,15 +26,19 @@ function Home() {
         }}
       >
         <InputField
-          placeholder="Post Code"
-          handleChange={(e) => setPostCode(e.target.value)}
+          type="dropdown"
+          handleChange={(e) => setCity(e.target.value)}
+          options={[
+            { name: "Vilnius", value: "vilnius" },
+            { name: "Kaunas", value: "kaunas" },
+            { name: "Klaipėda", value: "klaipėda" },
+          ]}
         />
-        {error && "Post code is incorrect. Please try again."}
+        {error && <S.ErrorBlock>Please select a city.</S.ErrorBlock>}
         <S.FlexBlock>
           <Button type="submit">Show available items</Button>
         </S.FlexBlock>
       </form>
-      {location.state}
     </Section>
   );
 }
