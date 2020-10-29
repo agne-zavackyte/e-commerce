@@ -32,4 +32,17 @@ storiesOf("Input", module)
         handleChange={(e) => console.log(e.target.value)}
       />
     </ThemeProvider>
+  ))
+  .add("Dropdown Field", () => (
+    <ThemeProvider theme={theme}>
+      <InputField
+        type="dropdown"
+        handleChange={(e) => console.log(e.target.value)}
+        options={[
+          { name: "Vilnius", value: "vilnius" },
+          { name: "Kaunas", value: "kaunas" },
+          { name: "Klaipėda", value: "klaipėda" },
+        ]}
+      ></InputField>
+    </ThemeProvider>
   ));
